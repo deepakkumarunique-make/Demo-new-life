@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Deepak ❤️ Shruti</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+margin:0;
+padding:0;
+font-family: 'Segoe UI', sans-serif;
+text-align:center;
+overflow:hidden;
+background: linear-gradient(-45deg,#ff9a9e,#fad0c4,#fbc2eb,#a6c1ee);
+background-size:400% 400%;
+animation: gradientMove 12s ease infinite;
+color:#5a0033;
+}
+
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.section{
+display:none;
+padding:40px 20px;
+}
+
+.active{
+display:block;
+}
+
+button{
+padding:12px 28px;
+font-size:18px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+margin:12px;
+transition:0.3s;
+}
+
+#mainBtn{
+background:#ff4d6d;
+color:white;
+box-shadow:0 0 15px #ff4d6d;
+}
+
+#yesBtn{
+background:#00c853;
+color:white;
+box-shadow:0 0 12px #00c853;
+}
+
+#noBtn{
+background:#ff1744;
+color:white;
+position:absolute;
+}
+
+img{
+width:85%;
+max-width:320px;
+border-radius:20px;
+margin-top:20px;
+box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
+
+.fade{
+animation:fadeIn 2s forwards;
+opacity:0;
+}
+
+@keyframes fadeIn{
+to{opacity:1;}
+}
+
+.heart{
+position:absolute;
+opacity:0.5;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
+}
+
+.firework{
+position:absolute;
+font-size:25px;
+animation:explode 1s ease-out forwards;
+}
+
+@keyframes explode{
+0%{transform:scale(0);}
+100%{transform:scale(2); opacity:0;}
+}
+
+#hug{
+font-size:90px;
+animation:hugMove 1.5s infinite alternate;
+}
+
+@keyframes hugMove{
+from{transform:scale(1);}
+to{transform:scale(1.1);}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- INTRO -->
+<div id="intro" class="section active fade">
+<h1>Deepak ❤️ Shruti</h1>
+<p>
+Some love stories are loud.<br>
+Ours was quiet.<br><br>
+It started with simple conversations…<br>
+and slowly became my favorite part of every day.<br><br>
+Before I ask you something important…<br>
+I want you to feel something.
+</p>
+<button id="mainBtn" onclick="startExperience()">Take a Deep Breath ✨</button>
+</div>
+
+<!-- PAUSE -->
+<div id="pause" class="section fade">
+<h2>Close your eyes for 3 seconds…</h2>
+<h3>Imagine your life without me.</h3>
+</div>
+
+<!-- SLIDESHOW -->
+<div id="story" class="section fade">
+<h2 id="storyLine"></h2>
+<img id="slider" src="photo1.jpg">
+</div>
+
+<!-- CONFESSION -->
+<div id="confession" class="section fade">
+<h2>
+You don’t just make me happy.<br>
+You make me calm.<br>
+You make me better.<br>
+You make me want forever.
+</h2>
+<p>
+Also… I already told my heart about you.<br>
+It refuses refunds. 😌
+</p>
+<button id="mainBtn" onclick="showProposal()">Continue ❤️</button>
+</div>
+
+<!-- PROPOSAL -->
+<div id="proposal" class="section fade">
+<h1>
+Shruti…<br>
+Will you be my peace in chaos,<br>
+my partner in madness,<br>
+my biggest supporter,<br>
+my home…?
+</h1>
+
+<h2>Will you be my forever? 💍</h2>
+
+<button id="yesBtn" onclick="yesClicked()">YES ❤️</button>
+<button id="noBtn" onclick="moveNo()">No 😢</button>
+</div>
+
+<!-- FINAL -->
+<div id="final" class="section fade">
+<div id="hug">🧑‍🤝‍🧑❤️</div>
+<h1>You just made me the happiest man alive. 💍</h1>
+<p>
+I promise to protect your heart like my own.<br>
+Stand beside you when you feel low.<br>
+Celebrate every victory with you.<br>
+Grow with you.<br>
+Fight for us.<br>
+Choose you. Every single day.<br><br>
+Deepak ❤️ Shruti<br>
+This is where forever begins.
+</p>
+<h3>Screenshot this moment. 📸</h3>
+</div>
+
+<script>
+
+/* Floating hearts */
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=Math.random()*20+15+"px";
+document.body.appendChild(heart);
+setTimeout(()=>{heart.remove();},6000);
+},800);
+
+/* Start */
+function startExperience(){
+document.getElementById("bgMusic").play().catch(()=>{});
+document.getElementById("intro").classList.remove("active");
+document.getElementById("pause").classList.add("active");
+
+setTimeout(()=>{
+document.getElementById("pause").innerHTML="<h2>Now imagine it… with me.</h2>";
+},3000);
+
+setTimeout(()=>{
+document.getElementById("pause").classList.remove("active");
+document.getElementById("story").classList.add("active");
+autoSlide();
+},5000);
+}
+
+/* Story slideshow */
+let photos=["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg","photo5.jpg","photo6.jpg"];
+let lines=[
+"The day I didn’t know you’d change my life…",
+"The smile that became my peace…",
+"When office became my favorite place…",
+"When I realized… I don’t just like you.",
+"I choose you.",
+"And I will keep choosing you."
+];
+
+let index=0;
+
+function autoSlide(){
+document.getElementById("slider").src=photos[index];
+document.getElementById("storyLine").innerHTML=lines[index];
+index++;
+if(index<photos.length){
+setTimeout(autoSlide,3000);
+}else{
+setTimeout(()=>{
+document.getElementById("story").classList.remove("active");
+document.getElementById("confession").classList.add("active");
+},3000);
+}
+}
+
+/* Proposal */
+function showProposal(){
+document.getElementById("confession").classList.remove("active");
+document.getElementById("proposal").classList.add("active");
+}
+
+/* NO button logic */
+let noTexts=[
+"Are you sure? 🥺",
+"Think again cutie 😏",
+"Don’t break my heart 😭",
+"I already told my mom 🙈",
+"Shaadi cards almost printed 😬",
+"You’ll regret this 😝",
+"Coffee treat pending ☕",
+"I’ll cry dramatically 😢",
+"Last chance 😌",
+"You were never meant to press that ❤️"
+];
+
+let noIndex=0;
+let yesSize=18;
+
+function moveNo(){
+let no=document.getElementById("noBtn");
+no.innerHTML=noTexts[noIndex%noTexts.length];
+noIndex++;
+
+no.style.top=Math.random()*70+"%";
+no.style.left=Math.random()*70+"%";
+
+yesSize+=6;
+let yes=document.getElementById("yesBtn");
+yes.style.fontSize=yesSize+"px";
+yes.style.boxShadow="0 0 25px #00c853";
+}
+
+/* YES */
+function yesClicked(){
+document.getElementById("proposal").classList.remove("active");
+document.getElementById("final").classList.add("active");
+launchFireworks();
+}
+
+function launchFireworks(){
+setInterval(()=>{
+let fire=document.createElement("div");
+fire.classList.add("firework");
+fire.innerHTML="✨";
+fire.style.left=Math.random()*100+"vw";
+fire.style.top=Math.random()*100+"vh";
+document.body.appendChild(fire);
+setTimeout(()=>{fire.remove();},1000);
+},300);
+}
+
+</script>
+
+</body>
+</html>
