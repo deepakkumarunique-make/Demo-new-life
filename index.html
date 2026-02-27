@@ -9,10 +9,25 @@
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
-  background:linear-gradient(135deg,#ffdde1,#ee9ca7);
   color:#fff;
-  overflow-x:hidden;
   text-align:center;
+  overflow-x:hidden;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+}
+
+/* Floating hearts background */
+
+.heart{
+  position:fixed;
+  color:#ff4d6d;
+  animation:float 8s linear infinite;
+  opacity:.7;
+  z-index:0;
+}
+
+@keyframes float{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
 }
 
 /* Screens */
@@ -24,6 +39,8 @@ body{
   justify-content:center;
   align-items:center;
   padding:20px;
+  position:relative;
+  z-index:1;
 }
 
 /* Buttons */
@@ -35,16 +52,17 @@ body{
   font-size:18px;
   margin:10px;
   cursor:pointer;
-  box-shadow:0 6px 15px rgba(0,0,0,0.2);
+  background:#ff4d6d;
+  color:white;
+  box-shadow:0 6px 15px rgba(0,0,0,.3);
 }
 
-.primary{background:#ff4d6d;color:#fff;}
-.yes{background:#28a745;color:#fff;font-size:20px;}
-.no{background:#dc3545;color:#fff;}
+.yes{background:#28a745;}
+.no{background:#dc3545;}
 
-/* Cards */
+/* Memory cards */
 
-.card-container{
+.grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
@@ -53,22 +71,18 @@ body{
 }
 
 .card{
-  background:rgba(255,255,255,0.15);
-  backdrop-filter:blur(8px);
-  padding:20px;
+  background:rgba(255,255,255,.2);
+  backdrop-filter:blur(10px);
+  padding:18px;
   border-radius:18px;
   cursor:pointer;
-  font-size:15px;
 }
 
-/* Popup Gallery */
+/* Popup gallery */
 
-#galleryPopup{
+#popup{
   position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+  inset:0;
   background:#000;
   display:none;
   flex-direction:column;
@@ -77,13 +91,13 @@ body{
   z-index:10;
 }
 
-#galleryPopup img{
+#popup img{
   max-width:90%;
   max-height:60%;
   border-radius:15px;
 }
 
-.popupText{padding:15px;}
+.desc{padding:15px;font-size:16px;}
 
 /* Floating proposal button */
 
@@ -98,81 +112,81 @@ body{
 /* YES screen */
 
 #yesScreen{
+  display:none;
   background:#fff0f5;
   color:#d6336c;
-  display:none;
 }
 
-/* Hearts */
-
-.heart{
-  position:fixed;
-  color:#ff4d6d;
-  font-size:24px;
-  animation:float 6s linear infinite;
-}
-
-@keyframes float{
-  0%{transform:translateY(100vh);}
-  100%{transform:translateY(-10vh);}
+.gif{
+  width:80%;
+  max-width:320px;
+  margin:12px;
+  border-radius:15px;
 }
 </style>
 </head>
 
 <body>
 
+<!-- Floating hearts -->
+
+<script>
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(18+Math.random()*24)+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),8000);
+},400);
+</script>
+
 <!-- 💖 INTRO -->
 
 <div id="intro" class="screen">
 <h1>Shruti… this is our story ❤️</h1>
-<button class="btn primary" onclick="showMemories()">See Our Memories 💖</button>
+<button class="btn" onclick="showMemories()">See Our Memories 💖</button>
 </div>
 
 <!-- 📖 MEMORIES -->
 
 <div id="memories" class="screen" style="display:none;">
-
 <h2>Our Memories ✨</h2>
 
-<div class="card-container">
-
-<div class="card" onclick="openGallery('cute')">Cute Moments of You 🥰</div>
+<div class="grid">
+<div class="card" onclick="openGallery('cute')">Cute Moments 🥰</div>
 <div class="card" onclick="openGallery('food')">Eating Together 🍽️</div>
 <div class="card" onclick="openGallery('future')">Future Us 💞</div>
 <div class="card" onclick="openGallery('lovely')">Lovely Moments 💕</div>
-<div class="card" onclick="openGallery('marriage')">Our Marriage 💍</div>
+<div class="card" onclick="openGallery('marriage')">First Marriage 💍</div>
 <div class="card" onclick="openGallery('office')">Office Days 🏢</div>
 <div class="card" onclick="openGallery('together')">Us Together 👫</div>
 <div class="card" onclick="openGallery('trip')">Our Trip ✈️</div>
 <div class="card" onclick="openGallery('video')">Video Calls 📱</div>
-
 </div>
 
 </div>
 
-<!-- 💍 FLOATING BUTTON -->
-
-<button id="floatingBtn" class="btn primary" onclick="showProposal()">
-For something important 💖
+<button id="floatingBtn" class="btn" onclick="showProposal()">
+Something Important 💖
 </button>
 
-<!-- 📸 GALLERY POPUP -->
+<!-- 📸 POPUP -->
 
-<div id="galleryPopup">
-<img id="galleryImg">
-<div class="popupText" id="galleryText"></div>
-<button class="btn primary" onclick="nextImage()">Next ➜</button>
-<button class="btn no" onclick="closeGallery()">Close</button>
+<div id="popup">
+<img id="img">
+<div id="desc" class="desc"></div>
+<button class="btn" onclick="next()">Next ➜</button>
+<button class="btn no" onclick="closePopup()">Close</button>
 </div>
 
 <!-- 💍 PROPOSAL -->
 
 <div id="proposal" class="screen" style="display:none;">
 <h1>Will you be my Sethani sa forever? 💍</h1>
-
-<button id="yesBtn" class="btn yes" onclick="sayYes()">YES ❤️</button>
-<button id="noBtn" class="btn no" onclick="sayNo()">No 😢</button>
-
+<button id="yesBtn" class="btn yes" onclick="yes()">YES ❤️</button>
+<button id="noBtn" class="btn no" onclick="no()">No 😢</button>
 </div>
 
 <!-- 💞 YES SCREEN -->
@@ -182,21 +196,22 @@ For something important 💖
 <h1>Thank you for choosing me, Sethani sa ❤️</h1>
 
 <p>
-I promise to love you in every lifetime,<br>
+I promise to love you endlessly,<br>
 to stand beside you in every storm,<br>
-to laugh with you in every joy,<br>
-and to hold your hand until forever feels too short 💍
+to celebrate every joy with you,<br>
+and to hold your hand through this lifetime and beyond 💍
 </p>
 
-<h2>Our Forever Starts Now 💖</h2>
+<img src="holdinghands.gif" class="gif">
+<img src="firecracker.gif" class="gif">
 
-<div id="futureGallery"></div>
+<h2>Our Forever Begins Now 💖</h2>
 
 </div>
 
 <script>
 
-/* ---------- NAVIGATION ---------- */
+/* Navigation */
 
 function showMemories(){
   intro.style.display="none";
@@ -209,95 +224,97 @@ function showProposal(){
   floatingBtn.style.display="none";
 }
 
-/* ---------- GALLERY DATA ---------- */
+/* Gallery data */
 
 const galleries={
-future:["imagefu1.jpg","imagefu2.jpg","imagefu3.jpg","imagefu4.jpg"],
-cute:["imagec1.jpg","imagec2.jpg","imagec3.jpg","imagec4.jpg"],
-food:["imagef1.jpg","imagef2.jpg","imagef3.jpg","imagef4.jpg"],
-lovely:["imagel1.jpg","imagel2.jpg","imagel3.jpg","imagel4.jpg"],
-marriage:["imagem1.jpg","imagem2.jpg","imagem3.jpg","imagem4.jpg"],
-office:["imageo1.jpg","imageo2.jpg","imageo3.jpg","imageo4.jpg"],
-together:["imaget1.jpg","imaget2.jpg","imaget3.jpg","imaget4.jpg"],
-trip:["imagetr1.jpg","imagetr2.jpg","imagetr3.jpg","imagetr4.jpg"],
-video:["imagevc1.jpg","imagevc2.jpg","imagevc3.jpg","imagevc4.jpg"]
+
+cute:{
+imgs:["imagec1.jpg","imagec2.jpg","imagec3.jpg","imagec4.jpg"],
+text:"I love stealing your pictures when you don’t even realize it… because when you’re not around, these moments make me feel close to you ❤️"
+},
+
+food:{
+imgs:["imagef1.jpg","imagef2.jpg","imagef3.jpg","imagef4.jpg"],
+text:"Every visit to Sri Ram Dhaba feels special because you’re sitting across from me 💕"
+},
+
+future:{
+imgs:["imagefu1.jpg","imagefu2.jpg","imagefu3.jpg","imagefu4.jpg"],
+text:"This is the life I dream of… a thousand tomorrows with you 💞"
+},
+
+lovely:{
+imgs:["imagel1.jpg","imagel2.jpg","imagel3.jpg","imagel4.jpg"],
+text:"These are the memories I will cherish forever ❤️"
+},
+
+marriage:{
+imgs:["imagem1.jpg","imagem2.jpg","imagem3.jpg","imagem4.jpg"],
+text:"That wedding made me imagine a day like that… with you 💫"
+},
+
+office:{
+imgs:["imageo1.jpg","imageo2.jpg","imageo3.jpg","imageo4.jpg"],
+text:"The day we met became the beginning of something beautiful and unspoken 💛"
+},
+
+together:{
+imgs:["imaget1.jpg","imaget2.jpg","imaget3.jpg","imaget4.jpg"],
+text:"When we are together… my heart knows it is home 🤍"
+},
+
+trip:{
+imgs:["imagetr1.jpg","imagetr2.jpg","imagetr3.jpg","imagetr4.jpg"],
+text:"Unforgettable memories I will relive forever ❤️"
+},
+
+video:{
+imgs:["imagevc1.jpg","imagevc2.jpg","imagevc3.jpg","imagevc4.jpg"],
+text:"Even distance couldn’t stop me from feeling you close 💕"
+}
+
 };
 
-let currentGallery=[];
-let index=0;
+let current, index=0;
 
 function openGallery(key){
-  currentGallery=galleries[key];
+  current=galleries[key];
   index=0;
-  galleryPopup.style.display="flex";
-  galleryImg.src=currentGallery[index];
+  popup.style.display="flex";
+  img.src=current.imgs[index];
+  desc.innerText=current.text;
 }
 
-function nextImage(){
-  index=(index+1)%currentGallery.length;
-  galleryImg.src=currentGallery[index];
+function next(){
+  index=(index+1)%4;
+  img.src=current.imgs[index];
 }
 
-function closeGallery(){
-  galleryPopup.style.display="none";
+function closePopup(){
+  popup.style.display="none";
 }
 
-/* ---------- NO BUTTON ---------- */
+/* Proposal logic */
 
-let noCount=0;
-
+let n=0;
 const noTexts=[
 "Are you sure? 😢",
 "Think again 🥺",
-"My heart will break 💔",
-"Please don’t 💞",
+"Please don’t 💔",
 "Give me a chance ❤️",
-"I'll love you forever 💖",
-"Pretty please 😭",
-"You are my world 🌎",
-"I can't imagine life without you 💓",
+"My heart will break 💞",
 "Last chance 😭"
 ];
 
-function sayNo(){
-
-noBtn.innerText=noTexts[noCount % noTexts.length];
-noCount++;
-
-yesBtn.style.transform=`scale(${1 + noCount*0.2})`;
-
+function no(){
+  noBtn.innerText=noTexts[n%noTexts.length];
+  n++;
+  yesBtn.style.transform=`scale(${1+n*0.2})`;
 }
 
-/* ---------- YES ---------- */
-
-function sayYes(){
-
-proposal.style.display="none";
-yesScreen.style.display="flex";
-
-/* Show future images */
-
-galleries.future.forEach(img=>{
-  const i=document.createElement("img");
-  i.src=img;
-  i.style.width="80%";
-  i.style.margin="8px";
-  i.style.borderRadius="12px";
-  futureGallery.appendChild(i);
-});
-
-/* Floating hearts */
-
-setInterval(()=>{
-  const h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="❤️";
-  h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=(20+Math.random()*30)+"px";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),6000);
-},300);
-
+function yes(){
+  proposal.style.display="none";
+  yesScreen.style.display="flex";
 }
 
 </script>
