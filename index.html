@@ -3,56 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shruti ❤️ Deepak</title>
+<title>Our Forever ❤️</title>
 
 <style>
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
-  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  background:linear-gradient(135deg,#ff6a88,#ff99ac);
   height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
+  overflow:hidden;
 }
 
-/* CARD */
 .card{
   background:#fff;
-  width:94%;
-  max-width:420px;
-  border-radius:26px;
-  padding:36px 26px 42px;
-  box-shadow:0 30px 70px rgba(0,0,0,.25);
+  width:95%;
+  max-width:430px;
+  border-radius:28px;
+  padding:38px 28px 45px;
+  box-shadow:0 30px 80px rgba(0,0,0,.3);
   text-align:center;
+  position:relative;
 }
 
-/* HEADINGS */
-h1{color:#ff4d6d;margin-bottom:6px}
-.subtitle{color:#666;margin-bottom:25px;font-size:15px}
+h1{color:#ff3f6c;margin-bottom:8px}
+.subtitle{color:#666;margin-bottom:25px}
 
-/* BUTTONS */
 button{
   width:100%;
   border:none;
   padding:15px;
   margin:10px 0;
   font-size:16px;
-  border-radius:32px;
+  border-radius:35px;
   cursor:pointer;
-  transition:.25s;
+  transition:.3s;
 }
 
 .primary{
-  background:linear-gradient(45deg,#ff4d6d,#ff758c);
+  background:linear-gradient(45deg,#ff3f6c,#ff7aa2);
   color:#fff;
   font-weight:bold;
-  box-shadow:0 12px 28px rgba(255,77,109,.45);
+  box-shadow:0 15px 35px rgba(255,63,108,.4);
 }
 
 .secondary{
-  background:#ffe3e8;
-  color:#ff4d6d;
+  background:#ffe5ec;
+  color:#ff3f6c;
   font-weight:600;
 }
 
@@ -60,12 +59,12 @@ button:hover{transform:scale(1.05)}
 
 .menu,.proposal,.final{display:none}
 
-/* IMAGE VIEWER */
+/* Viewer */
 .viewer{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.92);
+  background:rgba(0,0,0,.95);
   backdrop-filter:blur(6px);
   align-items:center;
   justify-content:center;
@@ -77,250 +76,227 @@ button:hover{transform:scale(1.05)}
 .viewer img{
   max-width:92%;
   max-height:65vh;
-  border-radius:18px;
-  box-shadow:0 18px 55px rgba(0,0,0,.9);
+  border-radius:20px;
+  box-shadow:0 20px 60px rgba(0,0,0,.9);
 }
 
 .desc{color:#fff;margin-top:15px;font-size:15px}
 
-.viewer button{
-  width:auto;
-  padding:12px 22px;
-  margin:15px 8px 0;
-}
+.viewer button{width:auto;padding:12px 22px;margin:15px 8px 0}
 
-/* PROPOSAL */
-.proposal h2{
-  color:#ff4d6d;
-  font-size:23px;
-  margin-bottom:25px;
-}
+/* Proposal */
+.proposal h2{color:#ff3f6c;margin-bottom:25px}
+.yes{background:linear-gradient(45deg,#ff3f6c,#ff7aa2);color:#fff;font-weight:bold}
+.no{background:#f1f1f1;color:#666}
 
-.yes{
-  background:linear-gradient(45deg,#ff4d6d,#ff758c);
-  color:#fff;
-  font-weight:bold;
-}
-
-.no{
-  background:#f1f1f1;
-  color:#666;
-}
-
-/* FINAL PAGE */
-.final h2{
-  color:#ff4d6d;
-  font-size:24px;
-  margin-bottom:18px;
-}
-
-.final p{
-  color:#444;
-  font-size:15px;
-  line-height:1.7;
-}
-
-/* POPUP */
-.popup{
+/* Celebration Screen */
+.celebration{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.6);
-  align-items:center;
-  justify-content:center;
+  background:linear-gradient(135deg,#ff3f6c,#ff99ac);
+  color:#fff;
+  text-align:center;
+  padding:30px;
+  overflow:auto;
 }
 
-.popup-box{
-  background:#fff;
-  padding:30px;
-  border-radius:22px;
-  max-width:330px;
-  text-align:center;
+.celebration h2{font-size:26px;margin-top:40px}
+.celebration p{line-height:1.7;margin-top:20px}
+
+.confetti{
+  position:absolute;
+  width:10px;
+  height:10px;
+  background:white;
+  top:-10px;
+  animation:fall 5s linear infinite;
 }
+
+@keyframes fall{
+  to{transform:translateY(100vh) rotate(360deg)}
+}
+
+/* Floating hearts */
+.heart{
+  position:absolute;
+  font-size:20px;
+  animation:floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+  from{transform:translateY(100vh);opacity:1}
+  to{transform:translateY(-10vh);opacity:0}
+}
+
 </style>
 </head>
-
 <body>
 
-<div class="card">
-
-<!-- HOME -->
-<div id="home">
+<div class="card" id="home">
   <h1>Shruti ❤️</h1>
-  <div class="subtitle">A little world I made only for you</div>
-
+  <div class="subtitle">A world made only for you</div>
   <button class="primary" onclick="openMenu()">💖 Our Memories</button>
-  <button class="secondary" onclick="showProposal()">💍 I Have Something To Ask</button>
-  <button class="secondary" onclick="openSorry()">🥺 Sorry</button>
+  <button class="secondary" onclick="showProposal()">💍 The Big Question</button>
 </div>
 
-<!-- MEMORY MENU -->
-<div class="menu" id="menu">
+<!-- MENU -->
+<div class="card menu" id="menu">
   <h1>💞 Our Story</h1>
-
-  <button onclick="startView('cute')">🥰 Cute moments of you</button>
-  <button onclick="startView('food')">🍜 Eating food</button>
-  <button onclick="startView('future')">💍 Future us together</button>
-  <button onclick="startView('lovely')">💖 Lovely moments</button>
-  <button onclick="startView('marriage')">💒 First marriage we attended</button>
-  <button onclick="startView('office')">🏢 Friendship started in office</button>
-  <button onclick="startView('together')">🤗 Us together</button>
-  <button onclick="startView('trip')">✈️ Our trip</button>
-  <button onclick="startView('vc')">📱 Video call moments</button>
-
-  <button class="secondary" onclick="goHome()">⬅ Back Home</button>
-</div>
-
-<!-- PROPOSAL -->
-<div class="proposal" id="proposal">
-  <h2>Will you be my Sethani Sa forever?</h2>
-
-  <button class="yes" id="yesBtn" onclick="sayYes()">YES ❤️</button>
-  <button class="no" onclick="sayNo()">NO</button>
-
-  <p id="noText" style="margin-top:15px;color:#666"></p>
-
+  <button onclick="startView('cute')">🥰 Cute You</button>
+  <button onclick="startView('trip')">✈️ Our Trip</button>
+  <button onclick="startView('future')">💍 Future Dreams</button>
   <button class="secondary" onclick="goHome()">⬅ Back</button>
 </div>
 
-<!-- FINAL -->
-<div class="final" id="final">
-  <h2>You just made me the happiest man alive ❤️</h2>
-
-  <p>
-    I promise to protect your smile,  
-    to respect your dreams,  
-    to stand beside you in every storm,  
-    and to love you more with every passing day.  
-
-    From today, it’s you and me —  
-    building a life full of laughter, warmth, adventure,  
-    and a forever that belongs only to us.  
-  </p>
+<!-- PROPOSAL -->
+<div class="card proposal" id="proposal">
+  <h2 style="font-size:22px;line-height:1.5;">If loving you is my destiny...<br><br>Will you walk with me forever? 💍❤️</h2>
+  <button class="yes" id="yesBtn" onclick="startCelebration()">YES, FOREVER ❤️</button>
+  <button class="no" onclick="growYes()">NO</button>
+  <p id="noText" style="margin-top:15px;color:#666;font-style:italic;"></p>
+  <button class="secondary" onclick="goHome()">⬅ Back</button>
 </div>
 
-</div>
-
-<!-- IMAGE VIEWER -->
+<!-- VIEWER -->
 <div class="viewer" id="viewer">
   <img id="viewImg">
   <div class="desc" id="viewDesc"></div>
-
   <div>
     <button class="primary" onclick="nextPhoto()">Next ➜</button>
     <button class="secondary" onclick="closeViewer()">🏠 Home</button>
   </div>
 </div>
 
-<!-- SORRY POPUP -->
-<div class="popup" id="popup">
-  <div class="popup-box">
-    <h2>🥺🥺🥺😕🥺</h2>
-    <p>
-      Sorry for yesterday… please talk to me.  
-      I am trying my best to make you happy.  
-      I got emotional and made a mistake.  
-      Sorry from the bottom of my heart.  
-    </p>
-    <button class="primary" onclick="closeSorry()">Okay</button>
-  </div>
+<!-- CELEBRATION -->
+<div class="celebration" id="celebration">
+  <h2>She Said YES ❤️</h2>
+  <p>
+    From this moment forward,
+    it's you and me — forever.
+    I promise to protect your smile,
+    to stand beside you in every storm,
+    and to build a life full of laughter,
+    warmth, and endless love.
+  </p>
+  <br>
+  <img src="ring.gif" width="180">
+  <p style="margin-top:30px;font-size:18px;">
+    Thank you for choosing me ❤️
+  </p>
 </div>
 
 <script>
 function goHome(){
+  document.querySelectorAll('.card').forEach(c=>c.style.display='none');
   home.style.display='block';
-  menu.style.display='none';
-  proposal.style.display='none';
 }
 
-function openMenu(){
-  home.style.display='none';
-  menu.style.display='block';
-}
+function openMenu(){home.style.display='none';menu.style.display='block';}
+function showProposal(){home.style.display='none';proposal.style.display='block';}
 
-function showProposal(){
-  home.style.display='none';
-  proposal.style.display='block';
-}
-
-/* ALL MEMORIES */
+/* Memories */
 const memories={
-  cute:["imagec1","imagec2","imagec3","imagec4",
-  "I love stealing your random pictures… they become my comfort when you’re not around."],
-
-  food:["imagef1","imagef2","imagef3","imagef4",
-  "Watching you eat happily makes my heart full… especially our little dates at Sri Ram Dhaba."],
-
-  future:["imagefu1","imagefu2","imagefu3","imagefu4",
-  "This is the life I dream of… only if you choose me."],
-
-  lovely:["imagel1","imagel2","imagel3","imagel4",
-  "Moments I wish I could freeze forever."],
-
-  marriage:["imagem1","imagem2","imagem3","imagem4",
-  "That day I quietly imagined us as the couple on that stage someday."],
-
-  office:["imageo1","imageo2","imageo3","imageo4",
-  "Who knew that hello would become the most important bond of my life."],
-
-  together:["imaget1","imaget2","imaget3","imaget4",
-  "No words needed… just us."],
-
-  trip:["imagetr1","imagetr2","imagetr3","imagetr4",
-  "Unforgettable days I replay in my heart."],
-
-  vc:["imagevc1","imagevc2","imagevc3","imagevc4",
-  "Even distance failed… because seeing you was enough."]
+  cute:{
+    photos:["imagec1.jpg","imagec2.jpg","imagec3.jpg","imagec4.jpg"],
+    text:"Your smile is my favorite place."
+  },
+  trip:{
+    photos:["imagetr1.jpg","imagetr2.jpg","imagetr3.jpg","imagetr4.jpg"],
+    text:"Every journey with you feels magical."
+  },
+  future:{
+    photos:["imagefu1.jpg","imagefu2.jpg","imagefu3.jpg","imagefu4.jpg"],
+    text:"I see my whole future in your eyes."
+  }
 };
 
-let currentSet=[], index=0;
+let currentPhotos=[],currentText="",index=0;
 
 function startView(type){
-  currentSet=memories[type];
+  currentPhotos=memories[type].photos;
+  currentText=memories[type].text;
   index=0;
   showPhoto();
 }
 
 function showPhoto(){
-  viewImg.src=currentSet[index]+".jpg";
-  viewDesc.innerText=currentSet[4];
+  viewImg.src=currentPhotos[index];
+  viewDesc.innerText=currentText;
   viewer.style.display="flex";
 }
 
 function nextPhoto(){
-  index=(index+1)%4;
+  index=(index+1)%currentPhotos.length;
   showPhoto();
 }
 
-function closeViewer(){
-  viewer.style.display="none";
-}
+function closeViewer(){viewer.style.display="none";}
 
-/* PROPOSAL */
-const texts=[
-"Please don’t say no 😢",
-"Give me one chance 🥺",
-"I really mean it ❤️",
-"You are my happiness",
-"Please say yes",
-"I will wait forever"
-];
+/* Proposal */
+const texts=["Please think again 🥺","You are my happiness ❤️","I will wait forever 💕"];
 let i=0;
 
-function sayNo(){
+function growYes(){
   noText.innerText=texts[i%texts.length];
-  yesBtn.style.transform=`scale(${1+0.15*(i+1)})`;
+  yesBtn.style.transform=`scale(${1+0.2*(i+1)})`;
   i++;
 }
 
-function sayYes(){
+/* Celebration */
+function startCelebration(){
   proposal.style.display='none';
-  final.style.display='block';
+  celebration.style.display='block';
+
+  celebration.innerHTML=`
+    <h2 style="font-size:32px;animation:pop 1s ease;">She Said YES ❤️✨</h2>
+    <p style="font-size:18px;margin-top:25px;">
+      This is the beginning of our forever.
+      <br><br>
+      Today, love wins.
+      Today, my heart is complete.
+    </p>
+    <br>
+    <img src="ring.gif" width="200" style="margin-top:20px;animation:pop 1.2s ease;">
+    <p style="margin-top:35px;font-size:20px;font-weight:bold;">
+      I love you endlessly 💞
+    </p>
+  `;
+
+  launchConfetti();
+  launchHearts();
 }
 
-/* SORRY */
-function openSorry(){ popup.style.display='flex'; }
-function closeSorry(){ popup.style.display='none'; }
+/* extra pop animation */
+const style=document.createElement('style');
+style.innerHTML=`
+@keyframes pop{
+  0%{transform:scale(0.5);opacity:0}
+  100%{transform:scale(1);opacity:1}
+}`;
+document.head.appendChild(style);
+
+function launchConfetti(){
+  for(let i=0;i<30;i++){
+    let c=document.createElement('div');
+    c.className='confetti';
+    c.style.left=Math.random()*100+'vw';
+    c.style.background=`hsl(${Math.random()*360},100%,70%)`;
+    c.style.animationDuration=3+Math.random()*3+'s';
+    celebration.appendChild(c);
+  }
+}
+
+function launchHearts(){
+  for(let i=0;i<20;i++){
+    let h=document.createElement('div');
+    h.className='heart';
+    h.innerHTML='❤️';
+    h.style.left=Math.random()*100+'vw';
+    h.style.animationDuration=4+Math.random()*4+'s';
+    celebration.appendChild(h);
+  }
+}
 </script>
 
 </body>
