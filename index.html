@@ -2,214 +2,291 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Shruti ❤️ Deepak</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Deepak ❤️ Shruti</title>
+
 <style>
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #fff0f5;
-    color: #333;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-  }
-  h1 {
-    margin-top: 20px;
-    color: #ff1493;
-  }
-  .gallery-section {
-    margin: 30px auto;
-    max-width: 1000px;
-  }
-  .gallery-title {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: #ff69b4;
-  }
-  .gallery {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-  .gallery img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: transform 0.3s;
-  }
-  .gallery img:hover {
-    transform: scale(1.1);
-  }
-  .buttons {
-    margin: 30px 0;
-  }
-  .btn {
-    background: #ff69b4;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    margin: 10px;
-    font-size: 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-  .btn:hover {
-    transform: scale(1.1);
-  }
-  .description {
-    margin-top: 10px;
-    font-style: italic;
-    color: #ff1493;
-  }
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background: linear-gradient(to bottom right,#ffdde1,#ee9ca7);
+  color:#333;
+  text-align:center;
+}
+
+h1{margin-top:30px;}
+
+.container{padding:20px;}
+
+button{
+  padding:12px 20px;
+  margin:8px;
+  border:none;
+  border-radius:25px;
+  font-size:16px;
+  cursor:pointer;
+  background:#ff4d6d;
+  color:white;
+  transition:0.3s;
+}
+
+button:hover{transform:scale(1.1);}
+
+.gallery img{
+  width:90%;
+  max-width:350px;
+  margin:10px;
+  border-radius:15px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.hidden{display:none;}
+
+#proposal{margin-top:30px;}
+
+#yesBtn{
+  background:#28a745;
+  font-size:18px;
+}
+
+#noBtn{
+  background:#dc3545;
+}
+
+#yesScreen{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#fff0f5;
+  display:none;
+  overflow:auto;
+}
+
+.heart{
+  position:fixed;
+  color:#ff4d6d;
+  font-size:24px;
+  animation:float 6s linear infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(100vh);}
+  100%{transform:translateY(-10vh);}
+}
 </style>
 </head>
+
 <body>
 
-<h1>Deepak ❤️ Shruti</h1>
+<div class="container" id="main">
 
-<div class="gallery-section" id="memories">
-  <!-- Memory buttons -->
-  <div class="buttons">
-    <button class="btn" onclick="showGallery('cute')">Cute Moments of You</button>
-    <button class="btn" onclick="showGallery('food')">Eating Food</button>
-    <button class="btn" onclick="showGallery('future')">Future Us Together</button>
-    <button class="btn" onclick="showGallery('lovely')">Lovely Moments of Us</button>
-    <button class="btn" onclick="showGallery('marriage')">Our First Marriage</button>
-    <button class="btn" onclick="showGallery('office')">Photos When Friendship Started</button>
-    <button class="btn" onclick="showGallery('together')">Us Together</button>
-    <button class="btn" onclick="showGallery('trip')">Our Trip</button>
-    <button class="btn" onclick="showGallery('video')">Video Call Moments</button>
-  </div>
+<h1>Shruti ❤️ Deepak</h1>
+<h2>Our Memories — Every Moment With You Is My Favorite 💖</h2>
 
-  <div class="gallery" id="gallery"></div>
-  <div class="description" id="description"></div>
+<!-- CATEGORY BUTTONS -->
+
+<button onclick="showGallery('cute')">Cute Moments of You</button>
+<button onclick="showGallery('food')">Eating Food</button>
+<button onclick="showGallery('future')">Future Us Together</button>
+<button onclick="showGallery('lovely')">Lovely Moments of Us</button>
+<button onclick="showGallery('marriage')">Our First Marriage</button>
+<button onclick="showGallery('office')">Friendship in Office</button>
+<button onclick="showGallery('together')">Us Together</button>
+<button onclick="showGallery('trip')">Our Trip</button>
+<button onclick="showGallery('video')">Video Call Moments</button>
+
+<!-- GALLERY AREA -->
+
+<div id="gallery" class="gallery"></div>
+
+<!-- PROPOSAL -->
+
+<div id="proposal">
+<h2>Will you be my Sethani sa forever? 💍</h2>
+
+<button id="yesBtn" onclick="sayYes()">YES ❤️</button>
+<button id="noBtn" onclick="sayNo()">NO 😢</button>
+
+<p id="noText"></p>
 </div>
 
-<div class="buttons">
-  <h2>Will you be my <span style="color:#ff1493;">Sethani</span> forever?</h2>
-  <button class="btn" id="yesBtn" onclick="sayYes()">Yes ❤️</button>
-  <button class="btn" id="noBtn" onclick="sayNo()">No 😢</button>
+</div>
+
+<!-- YES SCREEN -->
+
+<div id="yesScreen">
+<h1>You said YES 💖</h1>
+
+<h2>
+You just made me the happiest person alive ❤️<br>
+From this moment on… every dream, every plan, every tomorrow — I want it all with you, Shruti 💍
+</h2>
+
+<h2>Our Forever Starts Now 💞</h2>
+
+<div class="gallery" id="futureGallery"></div>
+
 </div>
 
 <script>
+
+/* ---------- IMAGE DATA ---------- */
+
 const galleries = {
-  cute: [
-    {img:'imagec1.jpg', desc:'Your smile makes my day brighter 💖'},
-    {img:'imagec2.jpg', desc:'The way you laugh melts my heart 😍'},
-    {img:'imagec3.jpg', desc:'Every little moment with you is magical ✨'},
-    {img:'imagec4.jpg', desc:'Your eyes tell me all the love I need 💕'}
-  ],
-  food: [
-    {img:'imagef1.jpg', desc:'Eating together, tasting happiness 🍕❤️'},
-    {img:'imagef2.jpg', desc:'Food is sweeter when shared with you 🍰'},
-    {img:'imagef3.jpg', desc:'Every meal with you is a memory 🥰'},
-    {img:'imagef4.jpg', desc:'Our love grows bite by bite 🍲💖'}
-  ],
-  future: [
-    {img:'imagefu1.jpg', desc:'Imagine waking up together every day 🌅'},
-    {img:'imagefu2.jpg', desc:'Our hands entwined forever 🤝💖'},
-    {img:'imagefu3.jpg', desc:'Dreaming our perfect life together ✨'},
-    {img:'imagefu4.jpg', desc:'All our tomorrows filled with love 💕'}
-  ],
-  lovely: [
-    {img:'imagel1.jpg', desc:'Every hug with you feels like home 🏡❤️'},
-    {img:'imagel2.jpg', desc:'Your laughter is my favorite song 🎶'},
-    {img:'imagel3.jpg', desc:'Moments with you are priceless 💖'},
-    {img:'imagel4.jpg', desc:'Being with you is my happiest place 😘'}
-  ],
-  marriage: [
-    {img:'imagem1.jpg', desc:'Walking together into a new chapter 💍'},
-    {img:'imagem2.jpg', desc:'Our first wedding moments, unforgettable 💕'},
-    {img:'imagem3.jpg', desc:'The start of our forever together ❤️'},
-    {img:'imagem4.jpg', desc:'Our vows, our promises, our love 💖'}
-  ],
-  office: [
-    {img:'imageo1.jpg', desc:'Where our beautiful friendship began 👩‍💻❤️'},
-    {img:'imageo2.jpg', desc:'Little moments at work, huge in heart 💖'},
-    {img:'imageo3.jpg', desc:'Sharing smiles over office coffee ☕😍'},
-    {img:'imageo4.jpg', desc:'From colleagues to soulmates 💕'}
-  ],
-  together: [
-    {img:'imaget1.jpg', desc:'Every photo captures my love for you 💖'},
-    {img:'imaget2.jpg', desc:'Being with you feels like a dream 🌸'},
-    {img:'imaget3.jpg', desc:'You & me, always ❤️'},
-    {img:'imaget4.jpg', desc:'Together forever, my love 💕'}
-  ],
-  trip: [
-    {img:'imagetr1.jpg', desc:'Our adventures make my heart race 🌍❤️'},
-    {img:'imagetr2.jpg', desc:'Every trip is magical with you ✨'},
-    {img:'imagetr3.jpg', desc:'Exploring the world, loving you more 💖'},
-    {img:'imagetr4.jpg', desc:'Traveling together, memories forever 🥰'}
-  ],
-  video: [
-    {img:'imagevc1.jpg', desc:'Seeing you, even through screens, melts my heart 💕'},
-    {img:'imagevc2.jpg', desc:'Every video call, a moment to cherish 😍'},
-    {img:'imagevc3.jpg', desc:'Your voice makes my day brighter 🎶❤️'},
-    {img:'imagevc4.jpg', desc:'Distance cannot dim our love 💖'}
-  ]
+
+cute:{
+title:"The Little Things That Make My Heart Melt 💗",
+desc:"Every smile of yours feels like sunshine on my darkest days.",
+images:["imagec1.jpg","imagec2.jpg","imagec3.jpg","imagec4.jpg"]
+},
+
+food:{
+title:"My Favorite Dining Partner Forever 😋",
+desc:"Food tastes better when you’re across the table.",
+images:["imagef1.jpg","imagef2.jpg","imagef3.jpg","imagef4.jpg"]
+},
+
+future:{
+title:"The Life I Dream Of — With You 💞",
+desc:"Every tomorrow feels beautiful because you are in it.",
+images:["imagefu1.jpg","imagefu2.jpg","imagefu3.jpg","imagefu4.jpg"]
+},
+
+lovely:{
+title:"Where My Heart Found Its Home 💓",
+desc:"With you, every second feels warm, safe, and magical.",
+images:["imagel1.jpg","imagel2.jpg","imagel3.jpg","imagel4.jpg"]
+},
+
+marriage:{
+title:"The Day My Forever Began 💫",
+desc:"Promises feel easy — because loving you feels natural.",
+images:["imagem1.jpg","imagem2.jpg","imagem3.jpg","imagem4.jpg"]
+},
+
+office:{
+title:"From Colleagues to Soulmates 💛",
+desc:"Between deadlines and coffee breaks, you became my favorite person.",
+images:["imageo1.jpg","imageo2.jpg","imageo3.jpg","imageo4.jpg"]
+},
+
+together:{
+title:"My Safe Place Is You 🤍",
+desc:"If I’m with you… I’m home.",
+images:["imaget1.jpg","imaget2.jpg","imaget3.jpg","imaget4.jpg"]
+},
+
+trip:{
+title:"Adventures With My Favorite Person 🌍",
+desc:"It wasn’t the destination… it was you.",
+images:["imagetr1.jpg","imagetr2.jpg","imagetr3.jpg","imagetr4.jpg"]
+},
+
+video:{
+title:"Even Miles Apart, Close at Heart 💕",
+desc:"Seeing your face was enough to make any day better.",
+images:["imagevc1.jpg","imagevc2.jpg","imagevc3.jpg","imagevc4.jpg"]
+}
+
 };
 
-let noMessages = [
-  "Please don't say no 😢",
-  "I promise to make you the happiest ❤️",
-  "Give us a chance 💖",
-  "Our love deserves a yes 😍",
-  "Don't break my heart 💔",
-  "I can’t imagine life without you 😭",
-  "Please reconsider 💕",
-  "I’ll do anything to see you smile 😊",
-  "You + Me = Forever ❤️",
-  "Please say yes 😘",
-  "My heart is yours 💖",
-  "Every moment with you is precious 😍",
-  "You make me complete 💕",
-  "I’ll love you endlessly 💖",
-  "Say yes and make me the luckiest 😍",
-  "I can’t stop thinking about you ❤️",
-  "Please don’t break my dreams 💔",
-  "I need you in my life 💕",
-  "You are my forever 💖",
-  "A yes from you makes everything perfect 😘"
-];
+
+/* ---------- SHOW GALLERY ---------- */
+
+function showGallery(key){
+
+const g = galleries[key];
+
+let html = `<h2>${g.title}</h2><p>${g.desc}</p>`;
+
+g.images.forEach(img=>{
+  html += `<img src="${img}">`;
+});
+
+document.getElementById("gallery").innerHTML = html;
+
+}
+
+
+/* ---------- PROPOSAL LOGIC ---------- */
 
 let noCount = 0;
-let yesCount = 1; // Number of Yes buttons increasing
 
-function showGallery(type) {
-  const galleryDiv = document.getElementById('gallery');
-  const descDiv = document.getElementById('description');
-  galleryDiv.innerHTML = '';
-  descDiv.innerHTML = '';
-  galleries[type].forEach(item => {
-    const imgEl = document.createElement('img');
-    imgEl.src = item.img;
-    imgEl.alt = item.desc;
-    imgEl.onclick = () => {
-      descDiv.innerText = item.desc;
-    };
-    galleryDiv.appendChild(imgEl);
-  });
+const noTexts = [
+"Please don't say no 😢",
+"Give me one chance 💔",
+"I promise to love you forever 🥺",
+"Think again please ❤️",
+"My heart will break 💔",
+"Pretty please 😭",
+"I'll bring chocolates 🍫",
+"I'll cook for you 🍜",
+"You are my everything 💖",
+"Don't do this to me 😭",
+"I can't imagine life without you 💞",
+"You are my destiny ✨",
+"I'll be the best husband 💍",
+"Just say yes ❤️",
+"I'll make you queen 👑",
+"You complete me 💓",
+"My world is you 🌎",
+"I'll love you endlessly 💖",
+"Please please please 😭",
+"Last chance… say yes ❤️"
+];
+
+function sayNo(){
+
+document.getElementById("noText").innerText = noTexts[noCount % noTexts.length];
+
+noCount++;
+
+/* Increase YES button */
+
+const yesBtn = document.getElementById("yesBtn");
+let size = 18 + noCount * 3;
+yesBtn.style.fontSize = size + "px";
+
 }
 
-function sayNo() {
-  if (noCount < noMessages.length) {
-    alert(noMessages[noCount]);
-    noCount++;
-  }
-  // Increase yes button size as a playful effect
-  const yesBtn = document.getElementById('yesBtn');
-  yesBtn.style.transform = `scale(${1 + noCount*0.05})`;
+
+/* ---------- YES CLICK ---------- */
+
+function sayYes(){
+
+document.getElementById("main").style.display="none";
+document.getElementById("yesScreen").style.display="block";
+
+/* Show future images */
+
+const future = galleries["future"].images;
+
+let html="";
+
+future.forEach(img=>{
+  html += `<img src="${img}">`;
+});
+
+document.getElementById("futureGallery").innerHTML = html;
+
+/* Floating hearts */
+
+setInterval(()=>{
+  const heart = document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=(20+Math.random()*30)+"px";
+  document.body.appendChild(heart);
+
+  setTimeout(()=>heart.remove(),6000);
+
+},300);
+
 }
 
-function sayYes() {
-  alert("Yay! You said yes! 💖");
-  // Automatically show future us together gallery
-  showGallery('future');
-}
 </script>
 
 </body>
