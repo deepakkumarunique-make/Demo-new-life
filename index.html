@@ -9,72 +9,65 @@
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
-  background: radial-gradient(circle at top,#ff9a9e,#fad0c4);
-  height:100vh;
+  background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+  min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  overflow:hidden;
-}
-
-/* floating hearts */
-body::before{
-  content:"❤ ❤ ❤ ❤ ❤ ❤ ❤ ❤ ❤ ❤";
-  position:fixed;
-  font-size:40px;
-  opacity:.15;
-  animation:float 20s linear infinite;
-}
-@keyframes float{
-  from{transform:translateY(100vh)}
-  to{transform:translateY(-120vh)}
 }
 
 .card{
   background:#fff;
-  padding:35px 25px 40px;
+  padding:28px 22px 34px;
   border-radius:22px;
   box-shadow:0 25px 60px rgba(0,0,0,.25);
   text-align:center;
   max-width:420px;
-  width:92%;
+  width:94%;
 }
 
-h1{color:#ff4d6d;margin-bottom:15px}
+h1{color:#ff4d6d;margin:0 0 6px}
 
 button{
   border:none;
-  padding:14px 22px;
+  padding:13px 20px;
   margin:8px;
   font-size:16px;
-  border-radius:30px;
+  border-radius:28px;
   cursor:pointer;
   transition:.25s;
 }
-
 .primary{background:#ff4d6d;color:#fff}
-.secondary{background:#ffd6dc}
+.secondary{background:#ffe3e8}
+button:hover{transform:scale(1.06)}
 
-button:hover{transform:scale(1.07)}
+/* ===== MEMORY MENU ===== */
+.menu{display:none;text-align:left}
+.menu button{
+  width:100%;
+  text-align:left;
+  margin:6px 0;
+  font-size:15px;
+}
 
-/* gallery */
-.gallery{display:none;text-align:left;max-height:60vh;overflow:auto}
-.section{margin-bottom:22px}
-.section h3{color:#ff4d6d;margin-bottom:8px}
+/* ===== GALLERY PAGE ===== */
+.gallery{display:none;text-align:left}
 .photos{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .photos img{width:100%;border-radius:10px}
-.desc{font-size:13px;color:#555;margin-top:6px}
+.desc{font-size:14px;color:#555;margin-top:10px}
+.back{margin-top:12px;width:100%}
 
-/* proposal */
+/* ===== PROPOSAL ===== */
 .proposal{display:none}
 .yes{background:#ff4d6d;color:#fff;font-weight:bold}
 .no{background:#eee}
 
-/* final page */
+/* ===== FINAL PAGE ===== */
 .final{display:none}
 .final h2{color:#ff4d6d}
+.final p{font-size:15px;color:#444}
 
-/* popup */
+/* ===== POPUP ===== */
 .popup{
   display:none;
   position:fixed;
@@ -85,112 +78,47 @@ button:hover{transform:scale(1.07)}
 }
 .popup-box{
   background:#fff;
-  padding:30px;
+  padding:28px;
   border-radius:20px;
   max-width:340px;
   text-align:center;
-  animation:pop .3s ease;
 }
-@keyframes pop{from{transform:scale(.7)}to{transform:scale(1)}}
-
 </style>
 </head>
 
 <body>
 
-<div class="card" id="main">
-  <h1>Shruti ❤️</h1>
-  <p>For the most special person in my life</p>
+<div class="card">
 
-  <button class="primary" onclick="showGallery()">💖 See Our Memories</button>
-  <button class="secondary" onclick="showProposal()">💍 Proposal</button>
-  <button class="secondary" onclick="openSorry()">🥺 Sorry</button>
+  <!-- LANDING -->
+  <div id="home">
+    <h1>Shruti ❤️</h1>
+    <p>Something special for you</p>
 
-  <!-- GALLERY -->
-  <div class="gallery" id="gallery">
-
-    <div class="section">
-      <h3>Cute moments of you</h3>
-      <div class="photos">
-        <img src="imagec1.jpg"><img src="imagec2.jpg">
-        <img src="imagec3.jpg"><img src="imagec4.jpg">
-      </div>
-      <div class="desc">I love stealing these random pictures of you… they become my comfort when you’re not around.</div>
-    </div>
-
-    <div class="section">
-      <h3>Eating food</h3>
-      <div class="photos">
-        <img src="imagef1.jpg"><img src="imagef2.jpg">
-        <img src="imagef3.jpg"><img src="imagef4.jpg">
-      </div>
-      <div class="desc">Watching you enjoy food makes my heart full… especially our little dates at Sri Ram Dhaba.</div>
-    </div>
-
-    <div class="section">
-      <h3>Future us together</h3>
-      <div class="photos">
-        <img src="imagefu1.jpg"><img src="imagefu2.jpg">
-        <img src="imagefu3.jpg"><img src="imagefu4.jpg">
-      </div>
-      <div class="desc">This is the life I dream of… only if you choose me.</div>
-    </div>
-
-    <div class="section">
-      <h3>Lovely moments of us</h3>
-      <div class="photos">
-        <img src="imagel1.jpg"><img src="imagel2.jpg">
-        <img src="imagel3.jpg"><img src="imagel4.jpg">
-      </div>
-      <div class="desc">Moments I wish I could freeze forever.</div>
-    </div>
-
-    <div class="section">
-      <h3>Our first marriage we attended</h3>
-      <div class="photos">
-        <img src="imagem1.jpg"><img src="imagem2.jpg">
-        <img src="imagem3.jpg"><img src="imagem4.jpg">
-      </div>
-      <div class="desc">That day, I quietly imagined us as the couple on that stage someday.</div>
-    </div>
-
-    <div class="section">
-      <h3>Friendship started in office</h3>
-      <div class="photos">
-        <img src="imageo1.jpg"><img src="imageo2.jpg">
-        <img src="imageo3.jpg"><img src="imageo4.jpg">
-      </div>
-      <div class="desc">Who knew that hello would become the most important connection of my life.</div>
-    </div>
-
-    <div class="section">
-      <h3>Us together</h3>
-      <div class="photos">
-        <img src="imaget1.jpg"><img src="imaget2.jpg">
-        <img src="imaget3.jpg"><img src="imaget4.jpg">
-      </div>
-      <div class="desc">No words needed… just us.</div>
-    </div>
-
-    <div class="section">
-      <h3>Our trip</h3>
-      <div class="photos">
-        <img src="imagetr1.jpg"><img src="imagetr2.jpg">
-        <img src="imagetr3.jpg"><img src="imagetr4.jpg">
-      </div>
-      <div class="desc">Unforgettable days, laughter, and memories I replay in my heart.</div>
-    </div>
-
-    <div class="section">
-      <h3>Video call moments</h3>
-      <div class="photos">
-        <img src="imagevc1.jpg"><img src="imagevc2.jpg">
-        <img src="imagevc3.jpg"><img src="imagevc4.jpg">
-      </div>
-      <div class="desc">Even distance failed… because seeing you was enough.</div>
-    </div>
-
+    <button class="primary" onclick="openMenu()">💖 Our Memories</button>
+    <button class="secondary" onclick="showProposal()">💍 Proposal</button>
+    <button class="secondary" onclick="openSorry()">🥺 Sorry</button>
   </div>
+
+  <!-- MEMORY MENU -->
+  <div class="menu" id="menu">
+    <h2>💞 Our Beautiful Memories</h2>
+
+    <button onclick="openGallery('cute')">🥰 Cute moments of you</button>
+    <button onclick="openGallery('food')">🍜 Eating food</button>
+    <button onclick="openGallery('future')">💍 Future us together</button>
+    <button onclick="openGallery('lovely')">💖 Lovely moments</button>
+    <button onclick="openGallery('marriage')">💒 First marriage we attended</button>
+    <button onclick="openGallery('office')">🏢 Friendship started in office</button>
+    <button onclick="openGallery('together')">🤗 Us together</button>
+    <button onclick="openGallery('trip')">✈️ Our trip</button>
+    <button onclick="openGallery('vc')">📱 Video call moments</button>
+
+    <button class="back secondary" onclick="goHome()">⬅ Back</button>
+  </div>
+
+  <!-- GALLERY VIEW -->
+  <div class="gallery" id="gallery"></div>
 
   <!-- PROPOSAL -->
   <div class="proposal" id="proposal">
@@ -198,18 +126,22 @@ button:hover{transform:scale(1.07)}
     <button class="yes" id="yesBtn" onclick="sayYes()">YES</button>
     <button class="no" onclick="sayNo()">NO</button>
     <p id="noText" style="color:#666;margin-top:10px"></p>
+    <button class="back secondary" onclick="goHome()">⬅ Back</button>
   </div>
 
-  <!-- FINAL -->
+  <!-- FINAL PAGE -->
   <div class="final" id="final">
-    <h2>Thank you for choosing me, Sethani Sa ❤️</h2>
+    <h2>Thank you for choosing me ❤️</h2>
     <p>
-      I promise to hold your hand through every storm,
-      to laugh with you in every joy,
-      to build a home filled with love,
-      and to choose you every single day… forever.
+      From today, every morning will begin with your smile,
+      every dream will include you,
+      and every future will have your hand in mine.
+      Our home will be filled with laughter,
+      silly fights, midnight talks, long trips,
+      and a lifetime of love.
     </p>
   </div>
+
 </div>
 
 <!-- SORRY POPUP -->
@@ -227,48 +159,84 @@ button:hover{transform:scale(1.07)}
 </div>
 
 <script>
-function showGallery(){
-  document.getElementById('gallery').style.display='block';
-  document.getElementById('proposal').style.display='none';
+function goHome(){
+  home.style.display='block';
+  menu.style.display='none';
+  gallery.style.display='none';
+  proposal.style.display='none';
+}
+
+function openMenu(){
+  home.style.display='none';
+  menu.style.display='block';
+}
+
+function openGallery(type){
+  menu.style.display='none';
+  gallery.style.display='block';
+
+  const data={
+    cute:["imagec1","imagec2","imagec3","imagec4",
+    "I love stealing your random pictures… they become my comfort when you’re not around."],
+    food:["imagef1","imagef2","imagef3","imagef4",
+    "Watching you eat happily makes my heart full… especially our little dates at Sri Ram Dhaba."],
+    future:["imagefu1","imagefu2","imagefu3","imagefu4",
+    "This is the life I dream of… only if you choose me."],
+    lovely:["imagel1","imagel2","imagel3","imagel4",
+    "Moments I wish I could freeze forever."],
+    marriage:["imagem1","imagem2","imagem3","imagem4",
+    "That day I quietly imagined us as the couple on that stage someday."],
+    office:["imageo1","imageo2","imageo3","imageo4",
+    "Who knew that hello would become the most important bond of my life."],
+    together:["imaget1","imaget2","imaget3","imaget4",
+    "No words needed… just us."],
+    trip:["imagetr1","imagetr2","imagetr3","imagetr4",
+    "Unforgettable days I replay in my heart."],
+    vc:["imagevc1","imagevc2","imagevc3","imagevc4",
+    "Even distance failed… because seeing you was enough."]
+  };
+
+  const d=data[type];
+  gallery.innerHTML=`
+    <div class='photos'>
+      <img src='${d[0]}.jpg'>
+      <img src='${d[1]}.jpg'>
+      <img src='${d[2]}.jpg'>
+      <img src='${d[3]}.jpg'>
+    </div>
+    <div class='desc'>${d[4]}</div>
+    <button class='back secondary' onclick='openMenu()'>⬅ Back</button>
+  `;
 }
 
 function showProposal(){
-  document.getElementById('proposal').style.display='block';
-  document.getElementById('gallery').style.display='none';
+  home.style.display='none';
+  proposal.style.display='block';
 }
 
 const texts=[
 "Please don’t say no 😢",
 "Give me one chance 🥺",
 "I really mean it ❤️",
-"My heart is with you",
 "You are my happiness",
 "Please say yes",
-"I will wait forever",
-"You matter to me",
-"Don’t break my heart",
-"You are my home"
+"I will wait forever"
 ];
 let i=0;
 
 function sayNo(){
-  document.getElementById('noText').innerText=texts[i%texts.length];
-  const yes=document.getElementById('yesBtn');
-  yes.style.transform=`scale(${1+0.1*(i+1)})`;
+  noText.innerText=texts[i%texts.length];
+  yesBtn.style.transform=`scale(${1+0.12*(i+1)})`;
   i++;
 }
 
 function sayYes(){
-  document.getElementById('proposal').style.display='none';
-  document.getElementById('final').style.display='block';
+  proposal.style.display='none';
+  final.style.display='block';
 }
 
-function openSorry(){
-  document.getElementById('popup').style.display='flex';
-}
-function closeSorry(){
-  document.getElementById('popup').style.display='none';
-}
+function openSorry(){ popup.style.display='flex'; }
+function closeSorry(){ popup.style.display='none'; }
 </script>
 
 </body>
