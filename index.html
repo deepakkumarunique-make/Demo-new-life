@@ -16,46 +16,38 @@ body{
   justify-content:center;
 }
 
+/* CARD */
 .card{
-  background:#ffffff;
+  background:#fff;
   width:94%;
   max-width:420px;
-  border-radius:25px;
-  padding:35px 25px 40px;
+  border-radius:26px;
+  padding:36px 26px 42px;
   box-shadow:0 30px 70px rgba(0,0,0,.25);
   text-align:center;
-  position:relative;
-  overflow:hidden;
 }
 
-h1{
-  color:#ff4d6d;
-  margin-bottom:8px;
-  font-size:26px;
-}
+/* HEADINGS */
+h1{color:#ff4d6d;margin-bottom:6px}
+.subtitle{color:#666;margin-bottom:25px;font-size:15px}
 
-.subtitle{
-  color:#666;
-  font-size:15px;
-  margin-bottom:25px;
-}
-
+/* BUTTONS */
 button{
   width:100%;
   border:none;
   padding:15px;
   margin:10px 0;
   font-size:16px;
-  border-radius:30px;
+  border-radius:32px;
   cursor:pointer;
-  transition:all .3s ease;
+  transition:.25s;
 }
 
 .primary{
   background:linear-gradient(45deg,#ff4d6d,#ff758c);
   color:#fff;
   font-weight:bold;
-  box-shadow:0 10px 25px rgba(255,77,109,.4);
+  box-shadow:0 12px 28px rgba(255,77,109,.45);
 }
 
 .secondary{
@@ -68,7 +60,7 @@ button:hover{transform:scale(1.05)}
 
 .menu,.proposal,.final{display:none}
 
-/* Viewer */
+/* IMAGE VIEWER */
 .viewer{
   display:none;
   position:fixed;
@@ -86,20 +78,10 @@ button:hover{transform:scale(1.05)}
   max-width:92%;
   max-height:65vh;
   border-radius:18px;
-  box-shadow:0 15px 50px rgba(0,0,0,.9);
-  animation:fadeIn .4s ease;
+  box-shadow:0 18px 55px rgba(0,0,0,.9);
 }
 
-@keyframes fadeIn{
-  from{opacity:0;transform:scale(.9)}
-  to{opacity:1;transform:scale(1)}
-}
-
-.desc{
-  color:#fff;
-  margin-top:15px;
-  font-size:15px;
-}
+.desc{color:#fff;margin-top:15px;font-size:15px}
 
 .viewer button{
   width:auto;
@@ -107,10 +89,10 @@ button:hover{transform:scale(1.05)}
   margin:15px 8px 0;
 }
 
-/* Proposal */
+/* PROPOSAL */
 .proposal h2{
   color:#ff4d6d;
-  font-size:22px;
+  font-size:23px;
   margin-bottom:25px;
 }
 
@@ -125,11 +107,7 @@ button:hover{transform:scale(1.05)}
   color:#666;
 }
 
-/* Final Page */
-.final{
-  animation:fadeIn .6s ease;
-}
-
+/* FINAL PAGE */
 .final h2{
   color:#ff4d6d;
   font-size:24px;
@@ -139,10 +117,10 @@ button:hover{transform:scale(1.05)}
 .final p{
   color:#444;
   font-size:15px;
-  line-height:1.6;
+  line-height:1.7;
 }
 
-/* Popup */
+/* POPUP */
 .popup{
   display:none;
   position:fixed;
@@ -159,8 +137,6 @@ button:hover{transform:scale(1.05)}
   max-width:330px;
   text-align:center;
 }
-
-.popup-box h2{margin-top:0}
 </style>
 </head>
 
@@ -172,43 +148,54 @@ button:hover{transform:scale(1.05)}
 <div id="home">
   <h1>Shruti ❤️</h1>
   <div class="subtitle">A little world I made only for you</div>
-  <button class="primary" onclick="openMenu()">💖 Enter Our Memories</button>
-  <button class="secondary" onclick="showProposal()">💍 A Question For You</button>
-  <button class="secondary" onclick="openSorry()">🥺 One More Thing</button>
+
+  <button class="primary" onclick="openMenu()">💖 Our Memories</button>
+  <button class="secondary" onclick="showProposal()">💍 I Have Something To Ask</button>
+  <button class="secondary" onclick="openSorry()">🥺 Sorry</button>
 </div>
 
-<!-- MENU -->
+<!-- MEMORY MENU -->
 <div class="menu" id="menu">
   <h1>💞 Our Story</h1>
-  <button onclick="startView('cute')">🥰 Cute You</button>
-  <button onclick="startView('food')">🍜 Food Dates</button>
-  <button onclick="startView('future')">💍 Future Dreams</button>
-  <button onclick="startView('lovely')">💖 Lovely Moments</button>
-  <button onclick="startView('trip')">✈️ Our Trip</button>
+
+  <button onclick="startView('cute')">🥰 Cute moments of you</button>
+  <button onclick="startView('food')">🍜 Eating food</button>
+  <button onclick="startView('future')">💍 Future us together</button>
+  <button onclick="startView('lovely')">💖 Lovely moments</button>
+  <button onclick="startView('marriage')">💒 First marriage we attended</button>
+  <button onclick="startView('office')">🏢 Friendship started in office</button>
+  <button onclick="startView('together')">🤗 Us together</button>
+  <button onclick="startView('trip')">✈️ Our trip</button>
+  <button onclick="startView('vc')">📱 Video call moments</button>
+
   <button class="secondary" onclick="goHome()">⬅ Back Home</button>
 </div>
 
 <!-- PROPOSAL -->
 <div class="proposal" id="proposal">
   <h2>Will you be my Sethani Sa forever?</h2>
-  <button class="yes" id="yesBtn" onclick="sayYes()">YES, Always ❤️</button>
-  <button class="no" onclick="sayNo()">Hmm…</button>
+
+  <button class="yes" id="yesBtn" onclick="sayYes()">YES ❤️</button>
+  <button class="no" onclick="sayNo()">NO</button>
+
   <p id="noText" style="margin-top:15px;color:#666"></p>
+
   <button class="secondary" onclick="goHome()">⬅ Back</button>
 </div>
 
 <!-- FINAL -->
 <div class="final" id="final">
   <h2>You just made me the happiest man alive ❤️</h2>
+
   <p>
-    I promise to protect your smile,
-    to respect your dreams,
-    to stand beside you in every storm,
-    and to love you in ways that grow deeper every single day.
-    
-    From this moment forward,
-    it’s you and me — building a life full of laughter,
-    warmth, adventure, and forever.
+    I promise to protect your smile,  
+    to respect your dreams,  
+    to stand beside you in every storm,  
+    and to love you more with every passing day.  
+
+    From today, it’s you and me —  
+    building a life full of laughter, warmth, adventure,  
+    and a forever that belongs only to us.  
   </p>
 </div>
 
@@ -218,19 +205,22 @@ button:hover{transform:scale(1.05)}
 <div class="viewer" id="viewer">
   <img id="viewImg">
   <div class="desc" id="viewDesc"></div>
+
   <div>
     <button class="primary" onclick="nextPhoto()">Next ➜</button>
     <button class="secondary" onclick="closeViewer()">🏠 Home</button>
   </div>
 </div>
 
-<!-- POPUP -->
+<!-- SORRY POPUP -->
 <div class="popup" id="popup">
   <div class="popup-box">
     <h2>🥺🥺🥺😕🥺</h2>
     <p>
-      I am really sorry… I never want to hurt you.
-      Please forgive me and let’s fix everything together.
+      Sorry for yesterday… please talk to me.  
+      I am trying my best to make you happy.  
+      I got emotional and made a mistake.  
+      Sorry from the bottom of my heart.  
     </p>
     <button class="primary" onclick="closeSorry()">Okay</button>
   </div>
@@ -253,12 +243,34 @@ function showProposal(){
   proposal.style.display='block';
 }
 
+/* ALL MEMORIES */
 const memories={
-  cute:["imagec1","imagec2","imagec3","imagec4","Your smile is my favorite place."],
-  food:["imagef1","imagef2","imagef3","imagef4","Every meal tastes better with you."],
-  future:["imagefu1","imagefu2","imagefu3","imagefu4","I see my whole future in your eyes."],
-  lovely:["imagel1","imagel2","imagel3","imagel4","These moments are my treasures."],
-  trip:["imagetr1","imagetr2","imagetr3","imagetr4","Adventures feel magical with you."]
+  cute:["imagec1","imagec2","imagec3","imagec4",
+  "I love stealing your random pictures… they become my comfort when you’re not around."],
+
+  food:["imagef1","imagef2","imagef3","imagef4",
+  "Watching you eat happily makes my heart full… especially our little dates at Sri Ram Dhaba."],
+
+  future:["imagefu1","imagefu2","imagefu3","imagefu4",
+  "This is the life I dream of… only if you choose me."],
+
+  lovely:["imagel1","imagel2","imagel3","imagel4",
+  "Moments I wish I could freeze forever."],
+
+  marriage:["imagem1","imagem2","imagem3","imagem4",
+  "That day I quietly imagined us as the couple on that stage someday."],
+
+  office:["imageo1","imageo2","imageo3","imageo4",
+  "Who knew that hello would become the most important bond of my life."],
+
+  together:["imaget1","imaget2","imaget3","imaget4",
+  "No words needed… just us."],
+
+  trip:["imagetr1","imagetr2","imagetr3","imagetr4",
+  "Unforgettable days I replay in my heart."],
+
+  vc:["imagevc1","imagevc2","imagevc3","imagevc4",
+  "Even distance failed… because seeing you was enough."]
 };
 
 let currentSet=[], index=0;
@@ -284,11 +296,14 @@ function closeViewer(){
   viewer.style.display="none";
 }
 
+/* PROPOSAL */
 const texts=[
-"Please think again 🥺",
+"Please don’t say no 😢",
+"Give me one chance 🥺",
 "I really mean it ❤️",
 "You are my happiness",
-"Don’t break my heart"
+"Please say yes",
+"I will wait forever"
 ];
 let i=0;
 
@@ -303,6 +318,7 @@ function sayYes(){
   final.style.display='block';
 }
 
+/* SORRY */
 function openSorry(){ popup.style.display='flex'; }
 function closeSorry(){ popup.style.display='none'; }
 </script>
