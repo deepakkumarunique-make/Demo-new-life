@@ -9,295 +9,266 @@
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
-  color:#fff;
-  text-align:center;
-  overflow-x:hidden;
-  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-}
-
-/* Floating hearts */
-
-.heart{
-  position:fixed;
-  color:#ff4d6d;
-  animation:float 8s linear infinite;
-  opacity:.7;
-  z-index:0;
-}
-
-@keyframes float{
-  from{transform:translateY(100vh);}
-  to{transform:translateY(-10vh);}
-}
-
-/* Screens */
-
-.screen{
-  min-height:100vh;
+  background: radial-gradient(circle at top,#ff9a9e,#fad0c4);
+  height:100vh;
   display:flex;
-  flex-direction:column;
-  justify-content:center;
   align-items:center;
-  padding:20px;
-  position:relative;
-  z-index:1;
+  justify-content:center;
+  overflow:hidden;
 }
 
-/* Buttons */
-
-.btn{
-  padding:14px 24px;
-  border:none;
-  border-radius:30px;
-  font-size:18px;
-  margin:10px;
-  cursor:pointer;
-  background:#ff4d6d;
-  color:white;
-  box-shadow:0 6px 15px rgba(0,0,0,.3);
+/* floating hearts */
+body::before{
+  content:"❤ ❤ ❤ ❤ ❤ ❤ ❤ ❤ ❤ ❤";
+  position:fixed;
+  font-size:40px;
+  opacity:.15;
+  animation:float 20s linear infinite;
 }
-
-.yes{background:#28a745;}
-.no{background:#dc3545;}
-.sorry{background:#6c757d;}
-
-/* Memory cards */
-
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  width:100%;
-  max-width:420px;
+@keyframes float{
+  from{transform:translateY(100vh)}
+  to{transform:translateY(-120vh)}
 }
 
 .card{
-  background:rgba(255,255,255,.2);
-  backdrop-filter:blur(10px);
-  padding:18px;
-  border-radius:18px;
-  cursor:pointer;
-}
-
-/* Popup gallery */
-
-#popup{
-  position:fixed;
-  inset:0;
-  background:#000;
-  display:none;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  z-index:10;
-}
-
-#popup img{
-  max-width:90%;
-  max-height:60%;
-  border-radius:15px;
-}
-
-.desc{padding:15px;font-size:16px;}
-
-/* Modal (Sorry) */
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:20;
-}
-
-.modal-box{
   background:#fff;
-  color:#333;
-  padding:25px;
-  border-radius:15px;
-  max-width:90%;
+  padding:35px 25px 40px;
+  border-radius:22px;
+  box-shadow:0 25px 60px rgba(0,0,0,.25);
+  text-align:center;
+  max-width:420px;
+  width:92%;
 }
 
-/* Floating proposal button */
+h1{color:#ff4d6d;margin-bottom:15px}
 
-#floatingBtn{
-  position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:5;
+button{
+  border:none;
+  padding:14px 22px;
+  margin:8px;
+  font-size:16px;
+  border-radius:30px;
+  cursor:pointer;
+  transition:.25s;
 }
 
-/* YES screen */
+.primary{background:#ff4d6d;color:#fff}
+.secondary{background:#ffd6dc}
 
-#yesScreen{
+button:hover{transform:scale(1.07)}
+
+/* gallery */
+.gallery{display:none;text-align:left;max-height:60vh;overflow:auto}
+.section{margin-bottom:22px}
+.section h3{color:#ff4d6d;margin-bottom:8px}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.photos img{width:100%;border-radius:10px}
+.desc{font-size:13px;color:#555;margin-top:6px}
+
+/* proposal */
+.proposal{display:none}
+.yes{background:#ff4d6d;color:#fff;font-weight:bold}
+.no{background:#eee}
+
+/* final page */
+.final{display:none}
+.final h2{color:#ff4d6d}
+
+/* popup */
+.popup{
   display:none;
-  background:#fff0f5;
-  color:#d6336c;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  align-items:center;
+  justify-content:center;
 }
+.popup-box{
+  background:#fff;
+  padding:30px;
+  border-radius:20px;
+  max-width:340px;
+  text-align:center;
+  animation:pop .3s ease;
+}
+@keyframes pop{from{transform:scale(.7)}to{transform:scale(1)}}
 
-.gif{
-  width:80%;
-  max-width:320px;
-  margin:12px;
-  border-radius:15px;
-}
 </style>
 </head>
 
 <body>
 
-<!-- Floating hearts -->
+<div class="card" id="main">
+  <h1>Shruti ❤️</h1>
+  <p>For the most special person in my life</p>
+
+  <button class="primary" onclick="showGallery()">💖 See Our Memories</button>
+  <button class="secondary" onclick="showProposal()">💍 Proposal</button>
+  <button class="secondary" onclick="openSorry()">🥺 Sorry</button>
+
+  <!-- GALLERY -->
+  <div class="gallery" id="gallery">
+
+    <div class="section">
+      <h3>Cute moments of you</h3>
+      <div class="photos">
+        <img src="imagec1.jpg"><img src="imagec2.jpg">
+        <img src="imagec3.jpg"><img src="imagec4.jpg">
+      </div>
+      <div class="desc">I love stealing these random pictures of you… they become my comfort when you’re not around.</div>
+    </div>
+
+    <div class="section">
+      <h3>Eating food</h3>
+      <div class="photos">
+        <img src="imagef1.jpg"><img src="imagef2.jpg">
+        <img src="imagef3.jpg"><img src="imagef4.jpg">
+      </div>
+      <div class="desc">Watching you enjoy food makes my heart full… especially our little dates at Sri Ram Dhaba.</div>
+    </div>
+
+    <div class="section">
+      <h3>Future us together</h3>
+      <div class="photos">
+        <img src="imagefu1.jpg"><img src="imagefu2.jpg">
+        <img src="imagefu3.jpg"><img src="imagefu4.jpg">
+      </div>
+      <div class="desc">This is the life I dream of… only if you choose me.</div>
+    </div>
+
+    <div class="section">
+      <h3>Lovely moments of us</h3>
+      <div class="photos">
+        <img src="imagel1.jpg"><img src="imagel2.jpg">
+        <img src="imagel3.jpg"><img src="imagel4.jpg">
+      </div>
+      <div class="desc">Moments I wish I could freeze forever.</div>
+    </div>
+
+    <div class="section">
+      <h3>Our first marriage we attended</h3>
+      <div class="photos">
+        <img src="imagem1.jpg"><img src="imagem2.jpg">
+        <img src="imagem3.jpg"><img src="imagem4.jpg">
+      </div>
+      <div class="desc">That day, I quietly imagined us as the couple on that stage someday.</div>
+    </div>
+
+    <div class="section">
+      <h3>Friendship started in office</h3>
+      <div class="photos">
+        <img src="imageo1.jpg"><img src="imageo2.jpg">
+        <img src="imageo3.jpg"><img src="imageo4.jpg">
+      </div>
+      <div class="desc">Who knew that hello would become the most important connection of my life.</div>
+    </div>
+
+    <div class="section">
+      <h3>Us together</h3>
+      <div class="photos">
+        <img src="imaget1.jpg"><img src="imaget2.jpg">
+        <img src="imaget3.jpg"><img src="imaget4.jpg">
+      </div>
+      <div class="desc">No words needed… just us.</div>
+    </div>
+
+    <div class="section">
+      <h3>Our trip</h3>
+      <div class="photos">
+        <img src="imagetr1.jpg"><img src="imagetr2.jpg">
+        <img src="imagetr3.jpg"><img src="imagetr4.jpg">
+      </div>
+      <div class="desc">Unforgettable days, laughter, and memories I replay in my heart.</div>
+    </div>
+
+    <div class="section">
+      <h3>Video call moments</h3>
+      <div class="photos">
+        <img src="imagevc1.jpg"><img src="imagevc2.jpg">
+        <img src="imagevc3.jpg"><img src="imagevc4.jpg">
+      </div>
+      <div class="desc">Even distance failed… because seeing you was enough.</div>
+    </div>
+
+  </div>
+
+  <!-- PROPOSAL -->
+  <div class="proposal" id="proposal">
+    <h2>Will you be my Sethani Sa forever?</h2>
+    <button class="yes" id="yesBtn" onclick="sayYes()">YES</button>
+    <button class="no" onclick="sayNo()">NO</button>
+    <p id="noText" style="color:#666;margin-top:10px"></p>
+  </div>
+
+  <!-- FINAL -->
+  <div class="final" id="final">
+    <h2>Thank you for choosing me, Sethani Sa ❤️</h2>
+    <p>
+      I promise to hold your hand through every storm,
+      to laugh with you in every joy,
+      to build a home filled with love,
+      and to choose you every single day… forever.
+    </p>
+  </div>
+</div>
+
+<!-- SORRY POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-box">
+    <h2>🥺🥺🥺😕🥺</h2>
+    <p>
+      Sorry for yesterday… please talk to me.
+      I am trying my best to make you happy.
+      I got emotional and made a mistake.
+      Sorry from the bottom of my heart.
+    </p>
+    <button class="primary" onclick="closeSorry()">Okay</button>
+  </div>
+</div>
 
 <script>
-setInterval(()=>{
-  const h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="❤️";
-  h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=(18+Math.random()*24)+"px";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),8000);
-},400);
-</script>
-
-<!-- 💖 INTRO -->
-
-<div id="intro" class="screen">
-<h1>Shruti… this is our story</h1>
-
-<button class="btn" onclick="showMemories()">See Our Memories</button>
-
-<button class="btn sorry" onclick="openSorry()">Sorry</button>
-
-</div>
-
-<!-- 💌 SORRY MODAL -->
-
-<div id="sorryModal" class="modal">
-<div class="modal-box">
-<p>
-Sorry for yesterday.<br><br>
-Can you please talk to me?<br>
-I am trying my best to make you happy.<br>
-I got emotional, that is why I did that.<br><br>
-Sorry from the bottom of my heart.
-</p>
-<button class="btn" onclick="closeSorry()">Close</button>
-</div>
-</div>
-
-<!-- 📖 MEMORIES -->
-
-<div id="memories" class="screen" style="display:none;">
-<h2>Our Memories</h2>
-
-<div class="grid">
-<div class="card" onclick="openGallery('cute')">Cute Moments</div>
-<div class="card" onclick="openGallery('food')">Eating Together</div>
-<div class="card" onclick="openGallery('future')">Future Us</div>
-<div class="card" onclick="openGallery('lovely')">Lovely Moments</div>
-<div class="card" onclick="openGallery('marriage')">First Marriage</div>
-<div class="card" onclick="openGallery('office')">Office Days</div>
-<div class="card" onclick="openGallery('together')">Us Together</div>
-<div class="card" onclick="openGallery('trip')">Our Trip</div>
-<div class="card" onclick="openGallery('video')">Video Calls</div>
-</div>
-
-</div>
-
-<button id="floatingBtn" class="btn" onclick="showProposal()">
-Something Important
-</button>
-
-<!-- 💍 PROPOSAL -->
-
-<div id="proposal" class="screen" style="display:none;">
-<h1>Will you be my Sethani sa forever?</h1>
-<button id="yesBtn" class="btn yes" onclick="yes()">YES</button>
-<button id="noBtn" class="btn no" onclick="no()">No</button>
-</div>
-
-<!-- 💞 YES SCREEN -->
-
-<div id="yesScreen" class="screen">
-
-<h1>Thank you for choosing me, Sethani sa</h1>
-
-<p>
-I promise to love you endlessly,<br>
-to stand beside you in every storm,<br>
-to celebrate every joy with you,<br>
-and to hold your hand through this lifetime and beyond.
-</p>
-
-<img src="holdinghands.gif" class="gif">
-<img src="firecracker.gif" class="gif">
-
-<p>
-After marriage, I do not promise a perfect life.<br>
-I promise a life where you will never face anything alone.<br><br>
-
-Morning tea together, small fights that end in hugs,<br>
-late-night talks, shared dreams,<br>
-building a home filled with warmth and laughter.<br><br>
-
-Growing old together while still holding your hand —<br>
-that is the life I want with you.
-</p>
-
-</div>
-
-<script>
-
-/* Sorry modal */
-
-function openSorry(){
-  sorryModal.style.display="flex";
-}
-
-function closeSorry(){
-  sorryModal.style.display="none";
-}
-
-/* Navigation */
-
-function showMemories(){
-  intro.style.display="none";
-  memories.style.display="flex";
+function showGallery(){
+  document.getElementById('gallery').style.display='block';
+  document.getElementById('proposal').style.display='none';
 }
 
 function showProposal(){
-  memories.style.display="none";
-  proposal.style.display="flex";
-  floatingBtn.style.display="none";
+  document.getElementById('proposal').style.display='block';
+  document.getElementById('gallery').style.display='none';
 }
 
-/* Proposal logic */
-
-let n=0;
-const noTexts=[
-"Are you sure?",
-"Think again",
-"Please do not say no",
-"Give me a chance",
-"My heart will break",
-"Last chance"
+const texts=[
+"Please don’t say no 😢",
+"Give me one chance 🥺",
+"I really mean it ❤️",
+"My heart is with you",
+"You are my happiness",
+"Please say yes",
+"I will wait forever",
+"You matter to me",
+"Don’t break my heart",
+"You are my home"
 ];
+let i=0;
 
-function no(){
-  noBtn.innerText=noTexts[n%noTexts.length];
-  n++;
-  yesBtn.style.transform=`scale(${1+n*0.2})`;
+function sayNo(){
+  document.getElementById('noText').innerText=texts[i%texts.length];
+  const yes=document.getElementById('yesBtn');
+  yes.style.transform=`scale(${1+0.1*(i+1)})`;
+  i++;
 }
 
-function yes(){
-  proposal.style.display="none";
-  yesScreen.style.display="flex";
+function sayYes(){
+  document.getElementById('proposal').style.display='none';
+  document.getElementById('final').style.display='block';
 }
 
+function openSorry(){
+  document.getElementById('popup').style.display='flex';
+}
+function closeSorry(){
+  document.getElementById('popup').style.display='none';
+}
 </script>
 
 </body>
