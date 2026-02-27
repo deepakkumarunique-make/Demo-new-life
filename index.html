@@ -15,7 +15,7 @@ body{
   background:linear-gradient(135deg,#ff9a9e,#fad0c4);
 }
 
-/* Floating hearts background */
+/* Floating hearts */
 
 .heart{
   position:fixed;
@@ -59,6 +59,7 @@ body{
 
 .yes{background:#28a745;}
 .no{background:#dc3545;}
+.sorry{background:#6c757d;}
 
 /* Memory cards */
 
@@ -98,6 +99,26 @@ body{
 }
 
 .desc{padding:15px;font-size:16px;}
+
+/* Modal (Sorry) */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:20;
+}
+
+.modal-box{
+  background:#fff;
+  color:#333;
+  padding:25px;
+  border-radius:15px;
+  max-width:90%;
+}
 
 /* Floating proposal button */
 
@@ -145,71 +166,101 @@ setInterval(()=>{
 <!-- 💖 INTRO -->
 
 <div id="intro" class="screen">
-<h1>Shruti… this is our story ❤️</h1>
-<button class="btn" onclick="showMemories()">See Our Memories 💖</button>
+<h1>Shruti… this is our story</h1>
+
+<button class="btn" onclick="showMemories()">See Our Memories</button>
+
+<button class="btn sorry" onclick="openSorry()">Sorry</button>
+
+</div>
+
+<!-- 💌 SORRY MODAL -->
+
+<div id="sorryModal" class="modal">
+<div class="modal-box">
+<p>
+Sorry for yesterday.<br><br>
+Can you please talk to me?<br>
+I am trying my best to make you happy.<br>
+I got emotional, that is why I did that.<br><br>
+Sorry from the bottom of my heart.
+</p>
+<button class="btn" onclick="closeSorry()">Close</button>
+</div>
 </div>
 
 <!-- 📖 MEMORIES -->
 
 <div id="memories" class="screen" style="display:none;">
-<h2>Our Memories ✨</h2>
+<h2>Our Memories</h2>
 
 <div class="grid">
-<div class="card" onclick="openGallery('cute')">Cute Moments 🥰</div>
-<div class="card" onclick="openGallery('food')">Eating Together 🍽️</div>
-<div class="card" onclick="openGallery('future')">Future Us 💞</div>
-<div class="card" onclick="openGallery('lovely')">Lovely Moments 💕</div>
-<div class="card" onclick="openGallery('marriage')">First Marriage 💍</div>
-<div class="card" onclick="openGallery('office')">Office Days 🏢</div>
-<div class="card" onclick="openGallery('together')">Us Together 👫</div>
-<div class="card" onclick="openGallery('trip')">Our Trip ✈️</div>
-<div class="card" onclick="openGallery('video')">Video Calls 📱</div>
+<div class="card" onclick="openGallery('cute')">Cute Moments</div>
+<div class="card" onclick="openGallery('food')">Eating Together</div>
+<div class="card" onclick="openGallery('future')">Future Us</div>
+<div class="card" onclick="openGallery('lovely')">Lovely Moments</div>
+<div class="card" onclick="openGallery('marriage')">First Marriage</div>
+<div class="card" onclick="openGallery('office')">Office Days</div>
+<div class="card" onclick="openGallery('together')">Us Together</div>
+<div class="card" onclick="openGallery('trip')">Our Trip</div>
+<div class="card" onclick="openGallery('video')">Video Calls</div>
 </div>
 
 </div>
 
 <button id="floatingBtn" class="btn" onclick="showProposal()">
-Something Important 💖
+Something Important
 </button>
-
-<!-- 📸 POPUP -->
-
-<div id="popup">
-<img id="img">
-<div id="desc" class="desc"></div>
-<button class="btn" onclick="next()">Next ➜</button>
-<button class="btn no" onclick="closePopup()">Close</button>
-</div>
 
 <!-- 💍 PROPOSAL -->
 
 <div id="proposal" class="screen" style="display:none;">
-<h1>Will you be my Sethani sa forever? 💍</h1>
-<button id="yesBtn" class="btn yes" onclick="yes()">YES ❤️</button>
-<button id="noBtn" class="btn no" onclick="no()">No 😢</button>
+<h1>Will you be my Sethani sa forever?</h1>
+<button id="yesBtn" class="btn yes" onclick="yes()">YES</button>
+<button id="noBtn" class="btn no" onclick="no()">No</button>
 </div>
 
 <!-- 💞 YES SCREEN -->
 
 <div id="yesScreen" class="screen">
 
-<h1>Thank you for choosing me, Sethani sa ❤️</h1>
+<h1>Thank you for choosing me, Sethani sa</h1>
 
 <p>
 I promise to love you endlessly,<br>
 to stand beside you in every storm,<br>
 to celebrate every joy with you,<br>
-and to hold your hand through this lifetime and beyond 💍
+and to hold your hand through this lifetime and beyond.
 </p>
 
 <img src="holdinghands.gif" class="gif">
 <img src="firecracker.gif" class="gif">
 
-<h2>Our Forever Begins Now 💖</h2>
+<p>
+After marriage, I do not promise a perfect life.<br>
+I promise a life where you will never face anything alone.<br><br>
+
+Morning tea together, small fights that end in hugs,<br>
+late-night talks, shared dreams,<br>
+building a home filled with warmth and laughter.<br><br>
+
+Growing old together while still holding your hand —<br>
+that is the life I want with you.
+</p>
 
 </div>
 
 <script>
+
+/* Sorry modal */
+
+function openSorry(){
+  sorryModal.style.display="flex";
+}
+
+function closeSorry(){
+  sorryModal.style.display="none";
+}
 
 /* Navigation */
 
@@ -224,86 +275,16 @@ function showProposal(){
   floatingBtn.style.display="none";
 }
 
-/* Gallery data */
-
-const galleries={
-
-cute:{
-imgs:["imagec1.jpg","imagec2.jpg","imagec3.jpg","imagec4.jpg"],
-text:"I love stealing your pictures when you don’t even realize it… because when you’re not around, these moments make me feel close to you ❤️"
-},
-
-food:{
-imgs:["imagef1.jpg","imagef2.jpg","imagef3.jpg","imagef4.jpg"],
-text:"Every visit to Sri Ram Dhaba feels special because you’re sitting across from me 💕"
-},
-
-future:{
-imgs:["imagefu1.jpg","imagefu2.jpg","imagefu3.jpg","imagefu4.jpg"],
-text:"This is the life I dream of… a thousand tomorrows with you 💞"
-},
-
-lovely:{
-imgs:["imagel1.jpg","imagel2.jpg","imagel3.jpg","imagel4.jpg"],
-text:"These are the memories I will cherish forever ❤️"
-},
-
-marriage:{
-imgs:["imagem1.jpg","imagem2.jpg","imagem3.jpg","imagem4.jpg"],
-text:"That wedding made me imagine a day like that… with you 💫"
-},
-
-office:{
-imgs:["imageo1.jpg","imageo2.jpg","imageo3.jpg","imageo4.jpg"],
-text:"The day we met became the beginning of something beautiful and unspoken 💛"
-},
-
-together:{
-imgs:["imaget1.jpg","imaget2.jpg","imaget3.jpg","imaget4.jpg"],
-text:"When we are together… my heart knows it is home 🤍"
-},
-
-trip:{
-imgs:["imagetr1.jpg","imagetr2.jpg","imagetr3.jpg","imagetr4.jpg"],
-text:"Unforgettable memories I will relive forever ❤️"
-},
-
-video:{
-imgs:["imagevc1.jpg","imagevc2.jpg","imagevc3.jpg","imagevc4.jpg"],
-text:"Even distance couldn’t stop me from feeling you close 💕"
-}
-
-};
-
-let current, index=0;
-
-function openGallery(key){
-  current=galleries[key];
-  index=0;
-  popup.style.display="flex";
-  img.src=current.imgs[index];
-  desc.innerText=current.text;
-}
-
-function next(){
-  index=(index+1)%4;
-  img.src=current.imgs[index];
-}
-
-function closePopup(){
-  popup.style.display="none";
-}
-
 /* Proposal logic */
 
 let n=0;
 const noTexts=[
-"Are you sure? 😢",
-"Think again 🥺",
-"Please don’t 💔",
-"Give me a chance ❤️",
-"My heart will break 💞",
-"Last chance 😭"
+"Are you sure?",
+"Think again",
+"Please do not say no",
+"Give me a chance",
+"My heart will break",
+"Last chance"
 ];
 
 function no(){
